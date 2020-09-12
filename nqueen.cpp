@@ -25,6 +25,7 @@ int legal(int i,int j) // To check the diagonal constraint of each placed queen
 }
 void disp() // To display the board
 {           //*** To calculate the number of solutions, just hide every occurrence of this function ***
+    cout<<"**Solution**\n\n";
     for(int i=0;i<n;i++)
     {
         for(int j=0;j<n;j++)
@@ -46,29 +47,22 @@ int place(int q_placed){
             }
         }
         if(check){
-            //cout<<"Continued";
-            //system("pause");
             continue;
         }
         if(legal(q_placed,j)){
-            //cout<<"Legal";
             x[q_placed]=q_placed;
             y[q_placed]=j;
             board[x[q_placed]][y[q_placed]]='Q';
             q_placed++;
-            //cout<<q_placed<<endl;
-            //disp();
             q_placed=place(q_placed);
         }
         if(q_placed==n){
-            cout<<"**Solution**\n\n";
             soln++;
             disp();
             q_placed--;
             board[x[q_placed]][y[q_placed]]='_';
             x[q_placed]=-1;
             y[q_placed]=-1;
-            //cout<<"in middle solution"<<endl;
         }
 
     }
@@ -78,8 +72,6 @@ int place(int q_placed){
     board[x[q_placed]][y[q_placed]]='_';
     x[q_placed]=-1;
     y[q_placed]=-1;
-    //cout<<"Loop ended, value of queen: "<<q_placed<<endl;
-    //disp();
     return q_placed;
 }
 
@@ -95,10 +87,7 @@ int main()
         y[0]=i;
         board[x[0]][y[0]]='Q';
         q_placed=1;
-        //cout<<"Initial"<<endl;
-        //disp();
         if(place(q_placed)==n){
-            cout<<"**Solution**\n\n";
             soln++;
             disp();
         }
